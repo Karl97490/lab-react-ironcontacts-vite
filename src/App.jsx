@@ -16,7 +16,7 @@ function App() {
     const sortedContacts = contacts.toSorted((a, b) => a.name.localeCompare(b.name))
     setContacts(sortedContacts)
   }
-  
+
   const sortedByPopularity = () => {
     const sortedContacts = contacts.toSorted((a, b) => b.popularity - a.popularity)
     setContacts(sortedContacts)
@@ -31,9 +31,11 @@ function App() {
   return (
     <div className="App">
       <h1>LAB | React IronContacts</h1>
-      <button name="addContact" onClick={addRandomContact}>Add random contacts</button>
-      <button name="sortedByPopularity" onClick={sortedByPopularity}>Sort by popularity</button>
-      <button name="sortedByName" onClick={sortedByName}>Sort by name</button>
+      <div>
+        <button name="addContact" onClick={addRandomContact}>Add random contacts</button>
+        <button name="sortedByPopularity" onClick={sortedByPopularity}>Sort by popularity</button>
+        <button name="sortedByName" onClick={sortedByName}>Sort by name</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -50,15 +52,17 @@ function App() {
             return (
               <tr key={id} className="card">
                 <td>
-                  <img src={contact.pictureUrl} alt="Picture profile" className="logo"/>
+                  <img src={contact.pictureUrl} alt="Picture profile" className="logo" />
                 </td>
                 <td>{contact.name}</td>
                 <td>{contact.popularity.toFixed(1)}</td>
                 <td>{contact.wonOscar && "🏆"}</td>
                 <td>{contact.wonEmmy && "🌟"}</td>
                 <td>
-                  <button name="deleteContact" onClick={() => deleteContact(id)}>Delete</button>
-                  </td>
+                  <button name="deleteContact" onClick={() => deleteContact(id)} className="delete-btn">
+                    Delete
+                  </button>
+                </td>
               </tr>
             )
           })}
